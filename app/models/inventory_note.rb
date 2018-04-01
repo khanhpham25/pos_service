@@ -1,0 +1,2 @@
+class InventoryNote < ApplicationRecord
+end
