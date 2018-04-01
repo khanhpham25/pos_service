@@ -1,0 +1,2 @@
+class GoodsReceiptNote < ApplicationRecord
+end

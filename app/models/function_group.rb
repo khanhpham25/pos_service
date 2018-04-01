@@ -1,0 +1,2 @@
+class FunctionGroup < ApplicationRecord
+end
