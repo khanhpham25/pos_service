@@ -8,6 +8,7 @@ class CreateProviders < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :tax_code
       t.text :note
+      t.datetime :deleted_at
 
       t.timestamps
     end

@@ -4,7 +4,8 @@ class CreateCustomers < ActiveRecord::Migration[5.1]
       t.string :code
       t.string :name
       t.string :address
-      t.integer :type
+      t.integer :customer_type_id
+      t.datetime :deleted_at
 
       t.timestamps
     end

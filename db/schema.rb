@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20180401100925) do
 
   create_table "attributes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -21,12 +22,14 @@ ActiveRecord::Schema.define(version: 20180401100925) do
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.integer "parent_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "customer_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,20 +38,23 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.string "code"
     t.string "name"
     t.string "address"
-    t.integer "type"
+    t.integer "customer_type_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "function_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "functions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.integer "group_id"
+    t.integer "function_group_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +64,7 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.integer "product_id"
     t.integer "amount"
     t.decimal "unit_price", precision: 64, scale: 12
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,6 +88,7 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.integer "in_stock"
     t.integer "amount_deviation"
     t.decimal "price_deviation", precision: 64, scale: 12
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -90,12 +98,14 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.datetime "invetory_date"
     t.integer "status"
     t.text "note"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "payment_methods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -104,6 +114,7 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.string "value"
     t.integer "product_id"
     t.integer "attribute_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -111,6 +122,7 @@ ActiveRecord::Schema.define(version: 20180401100925) do
   create_table "product_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "product_id"
     t.string "image"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -122,6 +134,8 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.decimal "initial_cost", precision: 64, scale: 12
     t.integer "stock_count"
     t.integer "category_id"
+    t.boolean "is_selling"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -134,6 +148,7 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.string "address"
     t.string "tax_code"
     t.text "note"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -142,7 +157,8 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.integer "product_id"
     t.integer "quantity"
     t.decimal "unit_price", precision: 64, scale: 12
-    t.integer "order_id"
+    t.integer "receipt_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -153,9 +169,9 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.integer "status"
     t.integer "creator_id"
     t.integer "customer_id"
-    t.integer "customer_type_id"
     t.decimal "customer_payment", precision: 64, scale: 12
     t.integer "payment_method_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -163,12 +179,14 @@ ActiveRecord::Schema.define(version: 20180401100925) do
   create_table "role_functions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "role_id"
     t.integer "function_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -181,6 +199,7 @@ ActiveRecord::Schema.define(version: 20180401100925) do
     t.string "address"
     t.integer "status"
     t.integer "role_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

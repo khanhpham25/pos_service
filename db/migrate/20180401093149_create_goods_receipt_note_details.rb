@@ -5,6 +5,7 @@ class CreateGoodsReceiptNoteDetails < ActiveRecord::Migration[5.1]
       t.integer :product_id
       t.integer :amount
       t.decimal :unit_price, precision: 64, scale: 12
+      t.datetime :deleted_at
 
       t.timestamps
     end

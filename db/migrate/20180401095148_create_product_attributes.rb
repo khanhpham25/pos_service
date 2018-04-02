@@ -4,6 +4,7 @@ class CreateProductAttributes < ActiveRecord::Migration[5.1]
       t.string :value
       t.integer :product_id
       t.integer :attribute_id
+      t.datetime :deleted_at
 
       t.timestamps
     end
