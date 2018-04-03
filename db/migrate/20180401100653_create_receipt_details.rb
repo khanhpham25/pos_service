@@ -4,7 +4,8 @@ class CreateReceiptDetails < ActiveRecord::Migration[5.1]
       t.integer :product_id
       t.integer :quantity
       t.decimal :unit_price, precision: 64, scale: 12
-      t.integer :order_id
+      t.integer :receipt_id
+      t.datetime :deleted_at
 
       t.timestamps
     end

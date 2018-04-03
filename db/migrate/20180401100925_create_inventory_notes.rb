@@ -5,6 +5,7 @@ class CreateInventoryNotes < ActiveRecord::Migration[5.1]
       t.datetime :invetory_date
       t.integer :status
       t.text :note
+      t.datetime :deleted_at
 
       t.timestamps
     end

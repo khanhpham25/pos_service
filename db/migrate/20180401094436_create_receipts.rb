@@ -6,9 +6,9 @@ class CreateReceipts < ActiveRecord::Migration[5.1]
       t.integer :status
       t.integer :creator_id
       t.integer :customer_id
-      t.integer :customer_type_id
       t.decimal :customer_payment, precision: 64, scale: 12
       t.integer :payment_method_id
+      t.datetime :deleted_at
 
       t.timestamps
     end

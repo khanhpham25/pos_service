@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :address
       t.integer :status
       t.integer :role_id
+      t.datetime :deleted_at
 
       t.timestamps
     end
