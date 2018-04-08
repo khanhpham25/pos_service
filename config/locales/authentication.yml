@@ -1,0 +1,4 @@
+en:
+  authentications:
+    correct_credentials: "Login Successfully!"
+    wrong_credentials: "Wrong credentials"

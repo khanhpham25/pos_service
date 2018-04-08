@@ -1,0 +1,6 @@
+en:
+  users:
+    unauthorized: "Unauthorized"
+    create_success: "User created successfully!"
+    create_fail: "Fail to create user!"
+    load_users_success: "Load Users Succesfully!"
