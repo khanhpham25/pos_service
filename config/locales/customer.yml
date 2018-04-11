@@ -1,0 +1,9 @@
+en:
+  customers:
+    unauthorized: "Unauthorized"
+    create_success: "Customer created successfully!"
+    update_success: "Customer updated successfully!"
+    destroy_success: "Customer destroyed successfully!"
+    load_customers_success: "Load Customers Succesfully!"
+    load_customers_success: "Load Customer Succesfully!"
+    not_found_customer: "Customer not found!"

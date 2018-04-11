@@ -1,0 +1,9 @@
+en:
+  product_attributes:
+    unauthorized: "Unauthorized"
+    create_success: "Product Attribute created successfully!"
+    update_success: "Product Attribute updated successfully!"
+    destroy_success: "Product Attribute destroyed successfully!"
+    load_product_attributes_success: "Load product attributes Succesfully!"
+    load_product_attribute_success: "Load product attribute Succesfully!"
+    not_found_product_attribute: "Product Attribute not found!"

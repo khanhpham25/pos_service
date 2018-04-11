@@ -1,0 +1,9 @@
+en:
+  customer_types:
+    unauthorized: "Unauthorized"
+    create_success: "Customer type created successfully!"
+    update_success: "Customer type updated successfully!"
+    destroy_success: "Customer type destroyed successfully!"
+    load_customer_types_success: "Load Customer Types Succesfully!"
+    load_customer_type_success: "Load Customer Type Succesfully!"
+    not_found_customer_type: "Customer Type not found!"
