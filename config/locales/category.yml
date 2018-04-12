@@ -1,0 +1,9 @@
+en:
+  categories:
+    unauthorized: "Unauthorized"
+    create_success: "category created successfully!"
+    update_success: "category updated successfully!"
+    destroy_success: "category destroyed successfully!"
+    load_categories_success: "Load categories Succesfully!"
+    load_category_success: "Load category Succesfully!"
+    not_found_category: "Category not found!"
