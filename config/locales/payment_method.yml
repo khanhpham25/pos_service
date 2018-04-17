@@ -1,0 +1,9 @@
+en:
+  payment_methods:
+    unauthorized: "Unauthorized"
+    create_success: "Payment Method created successfully!"
+    update_success: "Payment Method updated successfully!"
+    destroy_success: "Payment Method destroyed successfully!"
+    load_payment_methods_success: "Load Payment Methods Succesfully!"
+    load_payment_method_success: "Load Payment Method Succesfully!"
+    not_found_payment_method: "Payment Method not found!"

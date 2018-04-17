@@ -1,0 +1,9 @@
+en:
+  goods_receipt_notes:
+    unauthorized: "Unauthorized"
+    create_success: "Goods Receipt Note created successfully!"
+    update_success: "Goods Receipt Note updated successfully!"
+    destroy_success: "Goods Receipt Note destroyed successfully!"
+    load_goods_receipt_notes_success: "Load Goods Receipt Notes Succesfully!"
+    load_goods_receipt_note_success: "Load Goods Receipt Note Succesfully!"
+    not_found_goods_receipt_note: "Goods Receipt Note not found!"
