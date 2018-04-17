@@ -1,0 +1,9 @@
+en:
+  providers:
+    unauthorized: "Unauthorized"
+    create_success: "Provider created successfully!"
+    update_success: "Provider updated successfully!"
+    destroy_success: "Provider destroyed successfully!"
+    load_providers_success: "Load Providers Succesfully!"
+    load_provider_success: "Load Provider Succesfully!"
+    not_found_provider: "Provider not found!"

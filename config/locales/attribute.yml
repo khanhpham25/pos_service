@@ -1,0 +1,9 @@
+en:
+  attributes:
+    unauthorized: "Unauthorized"
+    create_success: "Attribute created successfully!"
+    update_success: "Attribute updated successfully!"
+    destroy_success: "Attribute destroyed successfully!"
+    load_attributes_success: "Load Attributes Succesfully!"
+    load_attribute_success: "Load Attribute Succesfully!"
+    not_found_attribute: "Attribute not found!"

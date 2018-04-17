@@ -1,0 +1,9 @@
+en:
+  invetory_notes:
+    unauthorized: "Unauthorized"
+    create_success: "Inventory Note created successfully!"
+    update_success: "Inventory Note updated successfully!"
+    destroy_success: "Inventory Note destroyed successfully!"
+    load_invetory_notes_success: "Load Inventory Notes Succesfully!"
+    load_invetory_note_success: "Load Inventory Note Succesfully!"
+    not_found_invetory_note: "Inventory Note not found!"

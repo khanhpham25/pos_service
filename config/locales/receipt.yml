@@ -1,0 +1,9 @@
+en:
+  receipts:
+    unauthorized: "Unauthorized"
+    create_success: "Receipt created successfully!"
+    update_success: "Receipt updated successfully!"
+    destroy_success: "Receipt destroyed successfully!"
+    load_receipts_success: "Load Receipts Succesfully!"
+    load_receipt_success: "Load Receipt Succesfully!"
+    not_found_receipt: "Receipt not found!"
