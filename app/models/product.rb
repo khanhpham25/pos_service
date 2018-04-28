@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   acts_as_paranoid
 
   ATTRIBUTES_PARAMS = %i[
-    id name code sale_price initial_cose stock_count category_id is_selling
+    id name code sale_price initial_cost stock_count category_id is_selling
   ].freeze
 
   belongs_to :category
