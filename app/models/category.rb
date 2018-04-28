@@ -4,7 +4,7 @@ class Category < ApplicationRecord
 
   ATTRIBUTES_PARAMS = %i[ id name parent_id ].freeze
 
-  belongs_to :parent, class_name: Category.name
+  belongs_to :parent, class_name: Category.name, optional: true
 
   has_many :products
 end
