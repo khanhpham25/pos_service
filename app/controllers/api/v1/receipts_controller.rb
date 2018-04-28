@@ -8,7 +8,7 @@ module Api
 
         json_response message: I18n.t("receipts.load_receipts_success"),
           data: {
-            receipts: Serializers::ReceiptSerializer.new(object: receipts)
+            receipts: Serializers::ReceiptSerializer.new(object: receipts).serializer
           },
           status: 200
       end
@@ -16,7 +16,7 @@ module Api
       def show
         json_response message: I18n.t("receipts.load_receipt_success"),
           data: {
-            receipt: Serializers::ReceiptSerializer.new(object: receipt)
+            receipt: Serializers::ReceiptSerializer.new(object: receipt).serializer
           },
           status: 200
       end
@@ -28,7 +28,7 @@ module Api
         if receipt.save
           created_request_response message: I18n.t("receipts.create_success"),
             data: {
-              receipt: Serializers::ReceiptSerializer.new(object: receipt)
+              receipt: Serializers::ReceiptSerializer.new(object: receipt).serializer
             },
             status: 201
         else
@@ -40,7 +40,7 @@ module Api
         if receipt.update_attributes receipt_params
           json_response message: I18n.t("receipts.update_success"),
             data: {
-              receipt: Serializers::ReceiptSerializer.new(object: receipt)
+              receipt: Serializers::ReceiptSerializer.new(object: receipt).serializer
             },
             status: 200
         else

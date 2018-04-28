@@ -10,7 +10,19 @@ module Api
           book = Axlsx::Package.new
           workbook = book.workbook
           sheet = workbook.add_worksheet name: "Import template"
-          sheet.add_row ["Mã hàng", "Tên hàng hoá", "Nhóm hàng", "Giá bán", "Giá vốn", "Tồn kho"]
+          sheet.add_row ["Product Code", "Product Name", "Category", "Sale Price", "Initial Price", "In Stock"]
+          sheet.add_row ["[Blank for new/Updating Product Code]", "", "", "", "", ""]
+          category_names = Category.pluck(:name).join(", ")
+          sheet.add_data_validation("C2:C10", {
+            :type => :list,
+            :formula1 => '"'+ category_names + '"',
+            :showDropDown => false,
+            :showErrorMessage => true,
+            :errorTitle => '',
+            :error => 'Please use the dropdown selector to choose the value',
+            :errorStyle => :stop,
+            :showInputMessage => true,
+            :prompt => '&amp; Choose category for the product'})
           send_excel_file book
         end
 

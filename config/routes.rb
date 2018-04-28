@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :customers
       resources :categories
       resources :receipts
+      resources :inventory_notes
       resources :statistic_reports, only: :index
 
       namespace :exports do
@@ -22,6 +23,10 @@ Rails.application.routes.draw do
             get :import_template
           end
         end
+      end
+
+      namespace :imports do
+        resources :products, only: :create
       end
     end
   end
