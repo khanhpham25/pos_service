@@ -44,7 +44,7 @@ module Api
         if payment_method.update_attributes payment_method_params
           json_response json: {
             message: I18n.t("payment_methods.update_success"),
-            data: data: {
+            data: {
               payment_method: payment_method
             },
             status: 200

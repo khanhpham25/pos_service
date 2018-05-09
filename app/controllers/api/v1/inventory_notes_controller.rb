@@ -44,7 +44,7 @@ module Api
         if invetory_note.update_attributes invetory_note_params
           json_response json: {
             message: I18n.t("invetory_notes.update_success"),
-            data: data: {
+            data: {
               invetory_note: Serialiers::InventoryNoteSerializer.new(object: invetory_note)
             },
             status: 200

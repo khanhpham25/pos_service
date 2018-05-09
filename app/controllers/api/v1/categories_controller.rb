@@ -44,7 +44,7 @@ module Api
         if category.update_attributes category_params
           json_response json: {
             message: I18n.t("categories.update_success"),
-            data: data: {
+            data: {
               category: Serialiers::CategorySerializer.new(object: category)
             },
             status: 200

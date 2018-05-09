@@ -47,7 +47,7 @@ module Api
         if customer_type.update_attributes customer_type_params
           json_response json: {
             message: I18n.t("customer_types.update_success"),
-            data: data: {
+            data: {
               customer_type: Serialiers::CustomerTypeSerializer
                 .new(object: customer_type)
             },

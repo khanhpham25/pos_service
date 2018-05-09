@@ -49,7 +49,7 @@ module Api
         if product_attribute.update_attributes product_attribute_params
           json_response json: {
             message: I18n.t("product_attributes.update_success"),
-            data: data: {
+            data: {
               product_attribute: Serialiers::ProductAttributeSerializer
                 .new(object: product_attribute)
             },
