@@ -44,7 +44,7 @@ module Api
         if receipt.update_attributes receipt_params
           json_response json: {
             message: I18n.t("receipts.update_success"),
-            data: data: {
+            data: {
               receipt: Serialiers::ReceiptSerializer.new(object: receipt)
             },
             status: 200

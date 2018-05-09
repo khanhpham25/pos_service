@@ -44,7 +44,7 @@ module Api
         if attribute.update_attributes attribute_params
           json_response json: {
             message: I18n.t("attributes.update_success"),
-            data: data: {
+            data: {
               attribute: attribute
             },
             status: 200

@@ -44,7 +44,7 @@ module Api
         if provider.update_attributes provider_params
           json_response json: {
             message: I18n.t("providers.update_success"),
-            data: data: {
+            data: {
               provider: provider
             },
             status: 200
