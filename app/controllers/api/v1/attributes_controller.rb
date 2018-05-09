@@ -6,60 +6,50 @@ module Api
       def index
         attributes = Attribute.all
 
-        json_response json: {
-          message: I18n.t("attributes.load_attributes_success"),
+        json_response message: I18n.t("attributes.load_attributes_success"),
           data: {
             attributes: attributes
           },
           status: 200
-        }
       end
 
       def show
-        json_response json: {
-          message: I18n.t("attributes.load_attribute_success"),
+        json_response message: I18n.t("attributes.load_attribute_success"),
           data: {
             attribute: attribute
           },
           status: 200
-        }
       end
 
       def create
         attribute = Attribute.new attribute_params
         if attribute.save
-          created_request_response json: {
-            message: I18n.t("attributes.create_success"),
+          created_request_response message: I18n.t("attributes.create_success"),
             data: {
               attribute: attribute
             },
             status: 201
-          }
         else
-          unprocessable_response json: { errors: attribute.errors, status: 422 }
+          unprocessable_response errors: attribute.errors, status: 422
         end
       end
 
       def update
         if attribute.update_attributes attribute_params
-          json_response json: {
-            message: I18n.t("attributes.update_success"),
+          json_response message: I18n.t("attributes.update_success"),
             data: {
               attribute: attribute
             },
             status: 200
-          }
         else
-          unprocessable_response json: {
-            errors: attribute.errors, status: 422
-          }
+          unprocessable_response errors: attribute.errors, status: 422
         end
       end
 
       def destroy
         attribute.destroy
-        no_content_response json: {message: I18n.t("attributes.destroy_success")},
-          status: :no_content
+        no_content_response message: I18n.t("attributes.destroy_success"),
+          status: 204
       end
 
       private
@@ -74,9 +64,7 @@ module Api
         @attribute = attribute.find_by id: params[:id]
 
         return if attribute
-        not_found_response json: {
-          errors: I18n.t("attributes.not_found_attribute")
-        }, status: :not_found
+        not_found_response errors: I18n.t("attributes.not_found_attribute"), status: 404
       end
     end
   end

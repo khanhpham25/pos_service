@@ -12,7 +12,7 @@ module Serializers
     end
 
     def goods_receipt_note_details
-      Serialiers::GoodsReceiptNoteDetailSerializer
+      Serializers::GoodsReceiptNoteDetailSerializer
         .new object: object.goods_receipt_note_details
     end
   end
