@@ -3,7 +3,7 @@ module Serializers
     attrs :id, :value, :attribute, :product
 
     def attribute
-      object.attribute
+      object.p_attribute
     end
 
     def product
