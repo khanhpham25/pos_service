@@ -6,60 +6,50 @@ module Api
       def index
         goods_receipt_notes = GoodsReceiptNote.all
 
-        json_response json: {
-          message: I18n.t("goods_receipt_notes.load_goods_receipt_notes_success"),
+        json_response message: I18n.t("goods_receipt_notes.load_goods_receipt_notes_success"),
           data: {
-            goods_receipt_notes: Serialiers::GoodsReceiptNoteSerializer.new(object: goods_receipt_notes)
+            goods_receipt_notes: Serializers::GoodsReceiptNoteSerializer.new(object: goods_receipt_notes)
           },
           status: 200
-        }
       end
 
       def show
-        json_response json: {
-          message: I18n.t("goods_receipt_notes.load_goods_receipt_note_success"),
+        json_response message: I18n.t("goods_receipt_notes.load_goods_receipt_note_success"),
           data: {
-            goods_receipt_note: Serialiers::GoodsReceiptNoteSerializer.new(object: goods_receipt_note)
+            goods_receipt_note: Serializers::GoodsReceiptNoteSerializer.new(object: goods_receipt_note)
           },
           status: 200
-        }
       end
 
       def create
         goods_receipt_note = GoodsReceiptNote.new goods_receipt_note_params
         if goods_receipt_note.save
-          created_request_response json: {
-            message: I18n.t("goods_receipt_notes.create_success"),
+          created_request_response message: I18n.t("goods_receipt_notes.create_success"),
             data: {
-              goods_receipt_note: Serialiers::GoodsReceiptNoteSerializer.new(object: goods_receipt_note)
+              goods_receipt_note: Serializers::GoodsReceiptNoteSerializer.new(object: goods_receipt_note)
             },
             status: 201
-          }
         else
-          unprocessable_response json: { errors: goods_receipt_note.errors, status: 422 }
+          unprocessable_response errors: goods_receipt_note.errors, status: 422
         end
       end
 
       def update
         if goods_receipt_note.update_attributes goods_receipt_note_params
-          json_response json: {
-            message: I18n.t("goods_receipt_notes.update_success"),
+          json_response message: I18n.t("goods_receipt_notes.update_success"),
             data: {
-              goods_receipt_note: Serialiers::GoodsReceiptNoteSerializer.new(object: goods_receipt_note)
+              goods_receipt_note: Serializers::GoodsReceiptNoteSerializer.new(object: goods_receipt_note)
             },
             status: 200
-          }
         else
-          unprocessable_response json: {
-            errors: goods_receipt_note.errors, status: 422
-          }
+          unprocessable_response errors: goods_receipt_note.errors, status: 422
         end
       end
 
       def destroy
         goods_receipt_note.destroy
-        no_content_response json: {message: I18n.t("goods_receipt_notes.destroy_success")},
-          status: :no_content
+        no_content_response message: I18n.t("goods_receipt_notes.destroy_success"),
+          status: 204
       end
 
       private
@@ -74,9 +64,8 @@ module Api
         @goods_receipt_note = goods_receipt_note.find_by id: params[:id]
 
         return if goods_receipt_note
-        not_found_response json: {
-          errors: I18n.t("goods_receipt_notes.not_found_goods_receipt_note")
-        }, status: :not_found
+        not_found_response errors: I18n.t("goods_receipt_notes.not_found_goods_receipt_note"),
+          status: 404
       end
     end
   end

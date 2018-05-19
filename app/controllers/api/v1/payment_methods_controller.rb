@@ -6,60 +6,50 @@ module Api
       def index
         payment_methods = PaymentMethod.all
 
-        json_response json: {
-          message: I18n.t("payment_methods.load_payment_methods_success"),
+        json_response message: I18n.t("payment_methods.load_payment_methods_success"),
           data: {
             payment_methods: payment_methods
           },
           status: 200
-        }
       end
 
       def show
-        json_response json: {
-          message: I18n.t("payment_methods.load_payment_method_success"),
+        json_response message: I18n.t("payment_methods.load_payment_method_success"),
           data: {
             payment_method: payment_method
           },
           status: 200
-        }
       end
 
       def create
         payment_method = PaymentMethod.new payment_method_params
         if payment_method.save
-          created_request_response json: {
-            message: I18n.t("payment_methods.create_success"),
+          created_request_response message: I18n.t("payment_methods.create_success"),
             data: {
               payment_method: payment_method
             },
             status: 201
-          }
         else
-          unprocessable_response json: { errors: payment_method.errors, status: 422 }
+          unprocessable_response errors: payment_method.errors, status: 422
         end
       end
 
       def update
         if payment_method.update_attributes payment_method_params
-          json_response json: {
-            message: I18n.t("payment_methods.update_success"),
+          json_response message: I18n.t("payment_methods.update_success"),
             data: {
               payment_method: payment_method
             },
             status: 200
-          }
         else
-          unprocessable_response json: {
-            errors: payment_method.errors, status: 422
-          }
+          unprocessable_response errors: payment_method.errors, status: 422
         end
       end
 
       def destroy
         payment_method.destroy
-        no_content_response json: {message: I18n.t("payment_methods.destroy_success")},
-          status: :no_content
+        no_content_response message: I18n.t("payment_methods.destroy_success"),
+          status: 204
       end
 
       private
@@ -74,9 +64,8 @@ module Api
         @payment_method = payment_method.find_by id: params[:id]
 
         return if payment_method
-        not_found_response json: {
-          errors: I18n.t("payment_methods.not_found_payment_method")
-        }, status: :not_found
+        not_found_response errors: I18n.t("payment_methods.not_found_payment_method"),
+          status: 404
       end
     end
   end

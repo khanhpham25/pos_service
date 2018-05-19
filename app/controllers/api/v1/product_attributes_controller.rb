@@ -6,67 +6,53 @@ module Api
       def index
         product_attributes = ProductAttribute.all
 
-        json_response json: {
-          message: I18n.t("product_attributes.load_product_attributes_success"),
+        json_response message: I18n.t("product_attributes.load_product_attributes_success"),
           data: {
-            product_attribute: Serialiers::ProductAttributeSerializer
+            product_attribute: Serializers::ProductAttributeSerializer
               .new(object: product_attributes)
           },
           status: 200
-        }
       end
 
       def show
-        json_response json: {
-          message: I18n.t("product_attributes.load_product_attribute_success"),
+        json_response message: I18n.t("product_attributes.load_product_attribute_success"),
           data: {
-            product_attribute: Serialiers::ProductAttributeSerializer
+            product_attribute: Serializers::ProductAttributeSerializer
               .new(object: product_attribute)
           },
           status: 200
-        }
       end
 
       def create
         product_attribute = ProductAttribute.new product_attribute_params
         if product_attribute.save
-          created_request_response json: {
-            message: I18n.t("product_attributes.create_success"),
+          created_request_response message: I18n.t("product_attributes.create_success"),
             data: {
-              product_attribute: Serialiers::ProductAttributeSerializer
+              product_attribute: Serializers::ProductAttributeSerializer
                 .new(object: product_attribute)
             },
             status: 201
-          }
         else
-          unprocessable_response json: {
-            errors: product_attribute.errors, status: 422
-          }
+          unprocessable_response errors: product_attribute.errors, status: 422
         end
       end
 
       def update
         if product_attribute.update_attributes product_attribute_params
-          json_response json: {
-            message: I18n.t("product_attributes.update_success"),
+          json_response message: I18n.t("product_attributes.update_success"),
             data: {
-              product_attribute: Serialiers::ProductAttributeSerializer
+              product_attribute: Serializers::ProductAttributeSerializer
                 .new(object: product_attribute)
             },
             status: 200
-          }
         else
-          unprocessable_response json: {
-            errors: product_attribute.errors, status: 422
-          }
+          unprocessable_response errors: product_attribute.errors, status: 422
         end
       end
 
       def destroy
         product_attribute.destroy
-        no_content_response json: {
-          message: I18n.t("product_attributes.destroy_success")
-        }, status: :no_content
+        no_content_response message: I18n.t("product_attributes.destroy_success"), status: 204
       end
 
       private
@@ -82,9 +68,8 @@ module Api
         @product_attribute = ProductAttribute.find_by id: params[:id]
 
         return if product_attribute
-        not_found_response json: {
-          errors: I18n.t("product_attributes.not_found_product_attribute")
-        }, status: :not_found
+        not_found_response errors: I18n.t("product_attributes.not_found_product_attribute"),
+          status: 404
       end
     end
   end

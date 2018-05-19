@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post 'login', to: 'authentications#create'
 
       resources :users
+      resources :products
     end
   end
 end

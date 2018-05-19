@@ -16,7 +16,7 @@ module Serializers
     end
 
     def inventory_note_details
-      Serialiers::ReceiptDetailSerializer
+      Serializers::ReceiptDetailSerializer
         .new object: object.inventory_note_details
     end
   end

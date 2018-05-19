@@ -6,16 +6,15 @@ module Api
       def create
         user = User.find_by email: authentication_params[:email].downcase
         if user && user.authenticate(authentication_params[:password])
-          json_response json: {
-            message: I18n.t("authentications.correct_credentials"),
+          json_response message: I18n.t("authentications.correct_credentials"),
             data: {
-              user: Serializers::UserSerializer.new(user),
+              user: Serializers::UserSerializer.new(user).serializer,
               token: Jwt.encode({user_id: user.id})
             },
             status: 200
-          }
         else
-          unauthorized_response json: {errors: I18n.t("authentications.wrong_credentials")}
+          unauthorized_response errors: I18n.t("authentications.wrong_credentials"),
+            status: 401
         end
       end
 

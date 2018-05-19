@@ -6,60 +6,50 @@ module Api
       def index
         categories = Category.all
 
-        json_response json: {
-          message: I18n.t("categories.load_categories_success"),
+        json_response message: I18n.t("categories.load_categories_success"),
           data: {
-            categories: Serialiers::CategorySerializer.new(object: categories)
+            categories: Serializers::CategorySerializer.new(object: categories)
           },
           status: 200
-        }
       end
 
       def show
-        json_response json: {
-          message: I18n.t("categories.load_category_success"),
+        json_response message: I18n.t("categories.load_category_success"),
           data: {
-            category: Serialiers::CategorySerializer.new(object: category)
+            category: Serializers::CategorySerializer.new(object: category)
           },
           status: 200
-        }
       end
 
       def create
         category = Category.new category_params
         if category.save
-          created_request_response json: {
-            message: I18n.t("categories.create_success"),
+          created_request_response message: I18n.t("categories.create_success"),
             data: {
-              category: Serialiers::CategorySerializer.new(object: category)
+              category: Serializers::CategorySerializer.new(object: category)
             },
             status: 201
-          }
         else
-          unprocessable_response json: { errors: category.errors, status: 422 }
+          unprocessable_response errors: category.errors, status: 422
         end
       end
 
       def update
         if category.update_attributes category_params
-          json_response json: {
-            message: I18n.t("categories.update_success"),
+          json_response message: I18n.t("categories.update_success"),
             data: {
-              category: Serialiers::CategorySerializer.new(object: category)
+              category: Serializers::CategorySerializer.new(object: category)
             },
             status: 200
-          }
         else
-          unprocessable_response json: {
-            errors: category.errors, status: 422
-          }
+          unprocessable_response errors: category.errors, status: 422
         end
       end
 
       def destroy
         category.destroy
-        no_content_response json: {message: I18n.t("categories.destroy_success")},
-          status: :no_content
+        no_content_response message: I18n.t("categories.destroy_success"),
+          status: 204
       end
 
       private
@@ -74,9 +64,7 @@ module Api
         @category = Category.find_by id: params[:id]
 
         return if category
-        not_found_response json: {
-          errors: I18n.t("categories.not_found_category")
-        }, status: :not_found
+        not_found_response errors: I18n.t("categories.not_found_category"), status: 404
       end
     end
   end

@@ -6,60 +6,51 @@ module Api
       def index
         products = Product.all
 
-        json_response json: {
-          message: I18n.t("products.load_products_success"),
+        json_response message: I18n.t("products.load_products_success"),
           data: {
-            products: Serialiers::ProductSerializer.new(object: products)
+            products: Serializers::ProductSerializer.new(object: products).serializer,
+            categories: Serializers::CategorySerializer.new(object: Category.all).serializer,
           },
           status: 200
-        }
       end
 
       def show
-        json_response json: {
-          message: I18n.t("products.load_product_success"),
+        json_response message: I18n.t("products.load_product_success"),
           data: {
-            product: Serialiers::ProductSerializer.new(object: product)
+            product: Serializers::ProductSerializer.new(object: product).serializer
           },
           status: 200
-        }
       end
 
       def create
         product = Product.new product_params
         if product.save
-          created_request_response json: {
-            message: I18n.t("products.create_success"),
+          created_request_response message: I18n.t("products.create_success"),
             data: {
-              product: Serializers::ProductSerializer.new(object: product)
+              product: Serializers::ProductSerializer.new(object: product).serializer
             },
             status: 201
-          }
         else
-          unprocessable_response json: { errors: product.errors, status: 422 }
+          unprocessable_response errors: product.errors, status: 422
         end
       end
 
       def update
         if product.update_attributes product_params
-          json_response json: {
-            message: I18n.t("products.update_success"),
+          json_response message: I18n.t("products.update_success"),
             data: {
-              product: Serializers::ProductSerializer.new(object: product)
+              product: Serializers::ProductSerializer.new(object: product).serializer
             },
             status: 200
-          }
         else
-          unprocessable_response json: {
-            errors: product.errors, status: 422
-          }
+          unprocessable_response errors: product.errors, status: 422
         end
       end
 
       def destroy
         product.destroy
-        no_content_response json: {message: I18n.t("products.destroy_success")},
-          status: :no_content
+        no_content_response message: I18n.t("products.destroy_success"),
+          status: 204
       end
 
       private
@@ -74,9 +65,7 @@ module Api
         @product = Product.find_by id: params[:id]
 
         return if product
-        not_found_response json: {
-          errors: I18n.t("products.not_found_product")
-        }, status: :not_found
+        not_found_response errors: I18n.t("products.not_found_product"), status: 404
       end
     end
   end

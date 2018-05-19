@@ -1,6 +1,6 @@
 module Response
   def json_response object, status = :ok
-    render object, status: status
+    render json: object, status: status
   end
 
   def created_request_response object

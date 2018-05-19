@@ -1,9 +1,9 @@
 module Serializers
   class CategorySerializer < Serializers::BaseSerializer
-    attrs :id, :code, :name, :address, :customer_type
+    attrs :id, :name, :parent
 
-    def customer_type
-      object.customer_type
+    def parent
+      object.parent
     end
   end
 end
