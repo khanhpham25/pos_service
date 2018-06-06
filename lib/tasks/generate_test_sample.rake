@@ -44,11 +44,11 @@ namespace :db do
 
       puts "4. Create Customer"
       Customer.create! [
-        { name: "Nguyen Van A", address: "So 1 Dai Co Viet",  customer_type_id: 1},
-        { name: "Nguyen Van B", address: "So 1 Dai Co Viet",  customer_type_id: 1},
-        { name: "Nguyen Van C", address: "So 1 Dai Co Viet",  customer_type_id: 1},
-        { name: "Framgia", address: "So 1 Dai Co Viet",  customer_type_id: 2},
-        { name: "Bach Khoa", address: "So 1 Dai Co Viet",  customer_type_id: 2},
+        { name: "Nguyen Van A", address: "So 1 Dai Co Viet",  customer_type: CustomerType.first},
+        { name: "Nguyen Van B", address: "So 1 Dai Co Viet",  customer_type: CustomerType.first},
+        { name: "Nguyen Van C", address: "So 1 Dai Co Viet",  customer_type: CustomerType.first},
+        { name: "Framgia", address: "So 1 Dai Co Viet",  customer_type: CustomerType.second},
+        { name: "Bach Khoa", address: "So 1 Dai Co Viet",  customer_type: CustomerType.second},
       ]
 
       puts "5. Create Product"
