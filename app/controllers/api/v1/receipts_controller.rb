@@ -23,6 +23,8 @@ module Api
 
       def create
         receipt = Receipt.new receipt_params
+        receipt.payment_method = PaymentMethod.first unless receipt_params[:payment_method_id]
+
         if receipt.save
           created_request_response message: I18n.t("receipts.create_success"),
             data: {
