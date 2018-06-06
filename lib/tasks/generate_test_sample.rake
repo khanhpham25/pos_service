@@ -9,7 +9,7 @@ namespace :db do
 
       puts "Create User"
         User.create! [
-          {name: "admin", password: "123123", password_confirmation: "123123", email: "admin@admin.com", address: "Abc 12 AbC", role_id: Role.first}
+          {name: "admin", password: "123123", password_confirmation: "123123", email: "admin@admin.com", address: "Abc 12 AbC", role: Role.first}
         ]
 
       puts "0.Creating Category"
