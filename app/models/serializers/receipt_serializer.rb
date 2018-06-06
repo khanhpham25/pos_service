@@ -1,7 +1,7 @@
 module Serializers
   class ReceiptSerializer < Serializers::BaseSerializer
     attrs :id, :code, :creator, :date_time, :customer, :status,
-      :customer_payment, :payment_method
+      :customer_payment, :payment_method, :note
 
     def creator
       object.creator

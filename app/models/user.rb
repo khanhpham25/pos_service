@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  has_one :role
+  belongs_to :role
   has_many :receipts, foreign_key: :creator_id
 
   validates :name, presence: true

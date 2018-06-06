@@ -4,7 +4,7 @@ module Api
       before_action :find_product, only: %i[ show update destroy ]
 
       def index
-        products = Product.all
+        products = Product.all.order created_at: :DESC
 
         json_response message: I18n.t("products.load_products_success"),
           data: {
