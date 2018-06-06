@@ -54,6 +54,12 @@ namespace :db do
           {name: "Product C", sale_price: 80, initial_cost: 75, stock_count: 100, category_id: category.id, is_selling: true},
         ])
       end
+
+      puts "6. Create Payment Method"
+      PaymentMethod.create!([
+        { name: "Cash"},
+        { name: "Credit"},
+      ])
     end
   end
 end

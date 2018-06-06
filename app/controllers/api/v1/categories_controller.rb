@@ -8,7 +8,7 @@ module Api
 
         json_response message: I18n.t("categories.load_categories_success"),
           data: {
-            categories: Serializers::CategorySerializer.new(object: categories)
+            categories: Serializers::CategorySerializer.new(object: categories).serializer
           },
           status: 200
       end
@@ -26,7 +26,7 @@ module Api
         if category.save
           created_request_response message: I18n.t("categories.create_success"),
             data: {
-              category: Serializers::CategorySerializer.new(object: category)
+              category: Serializers::CategorySerializer.new(object: category).serializer
             },
             status: 201
         else
@@ -38,7 +38,7 @@ module Api
         if category.update_attributes category_params
           json_response message: I18n.t("categories.update_success"),
             data: {
-              category: Serializers::CategorySerializer.new(object: category)
+              category: Serializers::CategorySerializer.new(object: category).serializer
             },
             status: 200
         else
