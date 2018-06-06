@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
       resources :users
       resources :products
+      resources :categories
+      resources :receipts
+      resources :statistic_reports, only: :index
     end
   end
 end
