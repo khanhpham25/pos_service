@@ -2,6 +2,11 @@ namespace :db do
   desc "Generate Sample Data"
   task generate_sample_data: :environment do
     ActiveRecord::Base.transaction do
+      puts "Create Role"
+        Role.create! [
+          {name: "Admin"}
+        ]
+
       puts "Create User"
         User.create! [
           {name: "admin", password: "123123", password_confirmation: "123123", email: "admin@admin.com", address: "Abc 12 AbC", role_id: 1}
