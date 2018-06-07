@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'login', to: 'authentications#create'
 
-      resources :users
+      resources :users do
+        collection do
+          delete :delete_users
+        end
+      end
       resources :products do
         collection do
           delete :delete_products
@@ -11,8 +15,17 @@ Rails.application.routes.draw do
           put :stop_selling_products
         end
       end
-      resources :customers
+      resources :customers do
+        collection do
+          delete :delete_customers
+        end
+      end
       resources :categories
+      resources :providers do
+        collection do
+          delete :delete_providers
+        end
+      end
       resources :receipts
       resources :statistic_reports, only: :index
 

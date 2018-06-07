@@ -12,14 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20180608182717) do
 
-  create_table "attributes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "attributes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.integer "parent_id"
     t.datetime "deleted_at"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "category_hierarchies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "category_hierarchies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "ancestor_id", null: false
     t.integer "descendant_id", null: false
     t.integer "generations", null: false
@@ -35,14 +35,14 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.index ["descendant_id"], name: "category_desc_idx"
   end
 
-  create_table "customer_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "customer_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "code"
     t.string "name"
     t.string "address"
@@ -53,14 +53,14 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.string "phone"
   end
 
-  create_table "function_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "function_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "functions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "functions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.integer "function_group_id"
     t.datetime "deleted_at"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "goods_receipt_note_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "goods_receipt_note_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "goods_receipt_note_id"
     t.integer "product_id"
     t.integer "amount"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "goods_receipt_notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "goods_receipt_notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "code"
     t.integer "status"
     t.integer "provider_id"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "inventory_note_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "inventory_note_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "inventory_note_id"
     t.integer "product_id"
     t.integer "real_quantity"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "inventory_notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "inventory_notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "code"
     t.datetime "invetory_date"
     t.integer "status"
@@ -112,14 +112,14 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "payment_methods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "payment_methods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_attributes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "product_attributes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "value"
     t.integer "product_id"
     t.integer "attribute_id"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "product_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "product_id"
     t.string "image"
     t.datetime "deleted_at"
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "code"
     t.string "name"
     t.decimal "sale_price", precision: 64, scale: 12
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.text "description"
   end
 
-  create_table "providers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "providers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "code"
     t.string "name"
     t.string "phone"
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "receipt_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "receipt_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "product_id"
     t.integer "quantity"
     t.decimal "unit_price", precision: 64, scale: 12
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "receipts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "receipts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "code"
     t.datetime "date_time"
     t.integer "status"
@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.text "note"
   end
 
-  create_table "role_functions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "role_functions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "role_id"
     t.integer "function_id"
     t.datetime "deleted_at"
@@ -195,14 +195,14 @@ ActiveRecord::Schema.define(version: 20180608182717) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.string "phone"
     t.string "email"
