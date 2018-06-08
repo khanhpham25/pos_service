@@ -3,7 +3,7 @@ class Product < ApplicationRecord
 
   after_save :update_code
 
-  ATTRIBUTES_PARAMS = %i(id name code sale_price initial_cost stock_count category_id is_selling)
+  ATTRIBUTES_PARAMS = %i(id name code sale_price initial_cost stock_count category_id is_selling description)
     .push(product_images_attributes: :image).freeze
 
   belongs_to :category
