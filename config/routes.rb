@@ -4,7 +4,13 @@ Rails.application.routes.draw do
       post 'login', to: 'authentications#create'
 
       resources :users
-      resources :products
+      resources :products do
+        collection do
+          delete :delete_products
+          put :allow_selling_products
+          put :stop_selling_products
+        end
+      end
       resources :customers
       resources :categories
       resources :receipts
