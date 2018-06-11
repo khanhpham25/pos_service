@@ -15,6 +15,14 @@ Rails.application.routes.draw do
       resources :categories
       resources :receipts
       resources :statistic_reports, only: :index
+
+      namespace :exports do
+        resources :products, only: [] do
+          collection do
+            get :import_template
+          end
+        end
+      end
     end
   end
 end
