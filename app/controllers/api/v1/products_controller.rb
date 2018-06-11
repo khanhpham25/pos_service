@@ -57,33 +57,33 @@ module Api
         ActiveRecord::Base.transaction do
           Product.where(id: product_params[:product_ids].split(',')).destroy_all
           {success: true}
-        rescue
-          {
-            success: false,
-          }
         end
+      rescue
+        {
+          success: false
+        }
       end
 
       def allow_selling_products
         ActiveRecord::Base.transaction do
           Product.where(id: product_params[:product_ids].split(',')).update_all(is_selling: true)
           {success: true}
-        rescue
-          {
-            success: false,
-          }
         end
+      rescue
+        {
+          success: false
+        }
       end
 
       def stop_selling_products
         ActiveRecord::Base.transaction do
           Product.where(id: product_params[:product_ids].split(',')).update_all(is_selling: false)
           {success: true}
-        rescue
-          {
-            success: false,
-          }
         end
+      rescue
+        {
+          success: false
+        }
       end
 
       private
