@@ -58,7 +58,7 @@ module Api
 
       def delete_customers
         ActiveRecord::Base.transaction do
-          Customer.where(id: customer_params[:customer_ids].split(',')).destroy_all
+          Customer.where(id: params[:customer_ids].split(',')).destroy_all
           {success: true}
         end
       rescue

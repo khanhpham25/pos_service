@@ -19,7 +19,9 @@ module Api
         user.password = "123456"
         if user.save
           created_request_response message: I18n.t("users.create_success"),
-            data: Serializers::UserSerializer.new(object: user).serializer,
+            data: {
+              user: Serializers::UserSerializer.new(object: user).serializer
+            },
             status: 201
         else
           unprocessable_response errors: user.errors, status: 422
@@ -46,7 +48,7 @@ module Api
 
       def delete_users
         ActiveRecord::Base.transaction do
-          User.where(id: user_params[:user_ids].split(',')).destroy_all
+          User.where(id: params[:user_ids].split(',')).destroy_all
           {success: true}
         end
       rescue

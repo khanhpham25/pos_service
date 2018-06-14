@@ -54,7 +54,7 @@ module Api
 
       def delete_providers
         ActiveRecord::Base.transaction do
-          Provider.where(id: provider_params[:provider_ids].split(',')).destroy_all
+          Provider.where(id: params[:provider_ids].split(',')).destroy_all
           {success: true}
         end
       rescue
