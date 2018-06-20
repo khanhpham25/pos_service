@@ -4,7 +4,7 @@ module Api
       before_action :find_receipt, only: %i[ show update destroy ]
 
       def index
-        receipts = Receipt.all
+        receipts = Receipt.all.order created_at: :DESC
 
         json_response message: I18n.t("receipts.load_receipts_success"),
           data: {
@@ -26,6 +26,8 @@ module Api
         receipt.payment_method = PaymentMethod.first unless receipt_params[:payment_method_id]
 
         if receipt.save
+          balance_product_stock receipt_params[:receipt_details_attributes].values
+
           created_request_response message: I18n.t("receipts.create_success"),
             data: {
               receipt: Serializers::ReceiptSerializer.new(object: receipt).serializer
@@ -67,6 +69,13 @@ module Api
 
         return if receipt
         not_found_response errors: I18n.t("receipts.not_found_receipt"), status: 404
+      end
+
+       def balance_product_stock receipt_details
+        receipt_details.each do |receipt|
+          product = Product.find_by id: receipt[:product_id]
+          product.update_attributes stock_count: product.stock_count - receipt[:quantity].to_i
+        end
       end
     end
   end

@@ -4,7 +4,7 @@ module Api
       before_action :find_inventory_note, only: %i[ show update destroy ]
 
       def index
-        inventory_notes = InventoryNote.all
+        inventory_notes = InventoryNote.all.order created_at: :DESC
 
         json_response message: I18n.t("inventory_notes.load_inventory_notes_success"),
           data: {
@@ -40,6 +40,10 @@ module Api
 
       def update
         if inventory_note.update_attributes inventory_note_params
+          if inventory_note_params[:status] != "0"
+            balance_product_stock inventory_note_params[:inventory_note_details_attributes].values
+          end
+
           json_response message: I18n.t("inventory_notes.update_success"),
             data: {
               inventory_note: Serializers::InventoryNoteSerializer.new(object: inventory_note).serializer
@@ -65,7 +69,7 @@ module Api
       end
 
       def find_inventory_note
-        @inventory_note = inventory_note.find_by id: params[:id]
+        @inventory_note = InventoryNote.find_by id: params[:id]
 
         return if inventory_note
         not_found_response errors: I18n.t("inventory_notes.not_found_inventory_note"),
@@ -74,6 +78,7 @@ module Api
 
       def balance_product_stock note_details
         note_details.each do |note|
+          next if note[:_destroy] != "undefined" || note[:_destroy] == "true"
           product = Product.find_by id: note[:product_id]
           product.update_attributes stock_count: note[:real_quantity]
         end
