@@ -8,7 +8,7 @@ module Api
 
         json_response message: I18n.t("providers.load_providers_success"),
           data: {
-            providers: providers
+            providers: Serializers::ProviderSerializer.new(object: providers).serializer,
           },
           status: 200
       end
@@ -16,7 +16,7 @@ module Api
       def show
         json_response message: I18n.t("providers.load_provider_success"),
           data: {
-            provider: provider
+            provider: Serializers::ProviderSerializer.new(object: provider).serializer,
           },
           status: 200
       end
@@ -26,7 +26,7 @@ module Api
         if provider.save
           created_request_response message: I18n.t("providers.create_success"),
             data: {
-              provider: provider
+              provider: Serializers::ProviderSerializer.new(object: provider).serializer,
             },
             status: 201
         else
@@ -38,7 +38,7 @@ module Api
         if provider.update_attributes provider_params
           json_response message: I18n.t("providers.update_success"),
             data: {
-              provider: provider
+              provider: Serializers::ProviderSerializer.new(object: provider).serializer,
             },
             status: 200
         else
@@ -52,6 +52,17 @@ module Api
           status: 204
       end
 
+      def delete_providers
+        ActiveRecord::Base.transaction do
+          Provider.where(id: params[:provider_ids].split(',')).destroy_all
+          {success: true}
+        end
+      rescue
+        {
+          success: false
+        }
+      end
+
       private
 
       attr_reader :provider
@@ -61,7 +72,7 @@ module Api
       end
 
       def find_provider
-        @provider = provider.find_by id: params[:id]
+        @provider = Provider.find_by id: params[:id]
 
         return if provider
         not_found_response errors: I18n.t("providers.not_found_provider"), status: 404
