@@ -56,6 +56,17 @@ module Api
           status: 204
       end
 
+      def delete_customers
+        ActiveRecord::Base.transaction do
+          Customer.where(id: params[:customer_ids].split(',')).destroy_all
+          {success: true}
+        end
+      rescue
+        {
+          success: false
+        }
+      end
+
       private
 
       attr_reader :customer
