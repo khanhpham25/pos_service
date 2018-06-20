@@ -3,7 +3,8 @@ module Api
     module Imports
       class ProductsController < ApplicationController
         def create
-          result = ProductServices::ImportFromFile.new(file: params[:file]).perform
+          result = ProductServices::ImportFromFile.new(file: params[:file],
+            update_stock_count: params[:update_stock_count]).perform
 
           if result[:success]
             created_request_response json: {
