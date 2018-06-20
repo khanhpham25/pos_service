@@ -21,7 +21,7 @@ namespace :db do
         {name: "Storage Devices"},
       ]
 
-      puts "1.Creating Customer Type"
+      puts "1. Creating Customer Type"
       CustomerType.create! [
         {name: "Individual"},
         {name: "Company"}

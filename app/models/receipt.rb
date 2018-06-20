@@ -21,7 +21,7 @@ class Receipt < ApplicationRecord
   private
 
     def update_code
-      code = "RC#{10000 + self.id}"
-      self.update_column :code, code
+      code = "RC#{10000 + id}"
+      update_column :code, code
     end
 end

@@ -8,7 +8,7 @@ module Api
 
         json_response message: I18n.t("inventory_notes.load_inventory_notes_success"),
           data: {
-            inventory_notes: Serializers::InventoryNoteSerializer.new(object: inventory_notes)
+            inventory_notes: Serializers::InventoryNoteSerializer.new(object: inventory_notes).serializer
           },
           status: 200
       end
@@ -16,7 +16,7 @@ module Api
       def show
         json_response message: I18n.t("inventory_notes.load_inventory_note_success"),
           data: {
-            inventory_note: Serializers::InventoryNoteSerializer.new(object: inventory_note)
+            inventory_note: Serializers::InventoryNoteSerializer.new(object: inventory_note).serializer
           },
           status: 200
       end
@@ -24,9 +24,13 @@ module Api
       def create
         inventory_note = InventoryNote.new inventory_note_params
         if inventory_note.save
+          if inventory_note_params[:status] != "0"
+            balance_product_stock inventory_note_params[:inventory_note_details_attributes].values
+          end
+
           created_request_response message: I18n.t("inventory_notes.create_success"),
             data: {
-              inventory_note: Serializers::InventoryNoteSerializer.new(object: inventory_note)
+              inventory_note: Serializers::InventoryNoteSerializer.new(object: inventory_note).serializer
             },
             status: 201
         else
@@ -38,7 +42,7 @@ module Api
         if inventory_note.update_attributes inventory_note_params
           json_response message: I18n.t("inventory_notes.update_success"),
             data: {
-              inventory_note: Serializers::InventoryNoteSerializer.new(object: inventory_note)
+              inventory_note: Serializers::InventoryNoteSerializer.new(object: inventory_note).serializer
             },
             status: 200
         else
@@ -66,6 +70,13 @@ module Api
         return if inventory_note
         not_found_response errors: I18n.t("inventory_notes.not_found_inventory_note"),
           status: :not_found
+      end
+
+      def balance_product_stock note_details
+        note_details.each do |note|
+          product = Product.find_by id: note[:product_id]
+          product.update_attributes stock_count: note[:real_quantity]
+        end
       end
     end
   end

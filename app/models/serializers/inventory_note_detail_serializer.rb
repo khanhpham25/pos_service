@@ -4,7 +4,7 @@ module Serializers
       :amount_deviation, :price_deviation
 
     def product
-      Serializers::ProductSerializer.new object: object.product
+      Serializers::ProductSerializer.new(object: object.product).serializer
     end
   end
 end
