@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   after_create :update_code
 
   ATTRIBUTES_PARAMS = %i(id name code sale_price initial_cost stock_count category_id is_selling description product_ids)
-    .push(product_images_attributes: :image).freeze
+    .push(product_images_attributes: ProductImage::ATTRIBUTES_PARAMS).freeze
 
   belongs_to :category
 
