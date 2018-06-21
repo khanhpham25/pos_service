@@ -12,7 +12,7 @@ module Serializers
     end
 
     def product_images
-      object.product_images
+      Serializers::ProductImageSerializer.new(object: object.product_images).serializer
     end
   end
 end
